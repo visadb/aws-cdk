@@ -19,6 +19,11 @@ describe('repository', () => {
       Resources: {
         Repo02AC86CF: {
           Type: 'AWS::ECR::Repository',
+          Properties: {
+            ImageScanningConfiguration: {
+              ScanOnPush: false,
+            },
+          },
           DeletionPolicy: 'Retain',
           UpdateReplacePolicy: 'Retain',
         },
@@ -566,6 +571,19 @@ describe('repository', () => {
       expect(() => new ecr.Repository(stack, 'Repo2', {
         repositoryName: new Array(258).join('x'),
       })).toThrow(/no more than 256/);
+    });
+
+    test('imageScanOnPush property validation', () => {
+      const stack = new cdk.Stack();
+      new ecr.Repository(stack, 'Repo1', {
+        imageScanOnPush: false,
+      });
+
+      expectCDK(stack).to(haveResourceLike('AWS::ECR::Repository', {
+        ImageScanningConfiguration: {
+          ScanOnPush: false,
+        },
+      }));
     });
 
     test('fails if repository name does not follow the specified pattern', () => {
