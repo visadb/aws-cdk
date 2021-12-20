@@ -354,6 +354,7 @@ describe('external task definition', () => {
 
       // THEN
       expect(stack).toHaveResource('AWS::ECR::Repository', {
+        ScanOnPush: false,
         LifecyclePolicy: {
           // eslint-disable-next-line max-len
           LifecyclePolicyText: '{"rules":[{"rulePriority":10,"selection":{"tagStatus":"tagged","tagPrefixList":["abc"],"countType":"imageCountMoreThan","countNumber":1},"action":{"type":"expire"}}]}',
@@ -585,7 +586,9 @@ describe('external task definition', () => {
     });
 
     // THEN
-    expect(stack).toHaveResource('AWS::ECR::Repository', {});
+    expect(stack).toHaveResource('AWS::ECR::Repository', {
+      ScanOnPush: false,
+    });
 
 
   });

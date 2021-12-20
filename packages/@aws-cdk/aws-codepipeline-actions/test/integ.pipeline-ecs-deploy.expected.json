@@ -201,6 +201,9 @@
     },
     "EcrRepoBB83A592": {
       "Type": "AWS::ECR::Repository",
+      "Properties": {
+        "ScanOnPush": false
+      },
       "UpdateReplacePolicy": "Retain",
       "DeletionPolicy": "Retain"
     },
