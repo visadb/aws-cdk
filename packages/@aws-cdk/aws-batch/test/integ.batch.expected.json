@@ -1666,7 +1666,9 @@
     "batchjobrepo4C508C51": {
       "Type": "AWS::ECR::Repository",
       "Properties": {
-        "ScanOnPush": false
+        "ImageScanningConfiguration": {
+          "ScanOnPush": false
+        }
       },
       "UpdateReplacePolicy": "Retain",
       "DeletionPolicy": "Retain"
@@ -1728,8 +1730,14 @@
           "Privileged": false,
           "ReadonlyRootFilesystem": false,
           "ResourceRequirements": [
-            { "Type": "VCPU", "Value": "1" },
-            { "Type": "MEMORY", "Value": "4" }
+            {
+              "Type": "VCPU",
+              "Value": "1"
+            },
+            {
+              "Type": "MEMORY",
+              "Value": "4"
+            }
           ]
         },
         "PlatformCapabilities": [
@@ -1750,8 +1758,14 @@
           "Privileged": false,
           "ReadonlyRootFilesystem": false,
           "ResourceRequirements": [
-            { "Type": "VCPU", "Value": "1" },
-            { "Type": "MEMORY", "Value": "4" }
+            {
+              "Type": "VCPU",
+              "Value": "1"
+            },
+            {
+              "Type": "MEMORY",
+              "Value": "4"
+            }
           ]
         },
         "PlatformCapabilities": [
