@@ -4,7 +4,9 @@
       "EcsDeployRepositoryE7A569C0": {
         "Type": "AWS::ECR::Repository",
         "Properties": {
-          "ScanOnPush": false
+          "ImageScanningConfiguration": {
+            "ScanOnPush": false
+          }
         },
         "UpdateReplacePolicy": "Retain",
         "DeletionPolicy": "Retain"
@@ -1743,14 +1745,14 @@
       "VpcPublicSubnet1NATGateway4D7517AA": {
         "Type": "AWS::EC2::NatGateway",
         "Properties": {
+          "SubnetId": {
+            "Ref": "VpcPublicSubnet1Subnet5C2D37C4"
+          },
           "AllocationId": {
             "Fn::GetAtt": [
               "VpcPublicSubnet1EIPD7E02669",
               "AllocationId"
             ]
-          },
-          "SubnetId": {
-            "Ref": "VpcPublicSubnet1Subnet5C2D37C4"
           },
           "Tags": [
             {
